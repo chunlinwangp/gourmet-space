@@ -1,11 +1,12 @@
 module.exports = {
   // This is the "main" file which should include all other modules
-  entry: './src/main.js',
+  entry: './src/app.js',
   // Where should the compiled file go?
   output: {
     // To the `dist` folder
     path: './dist',
     // With the filename `build.js` so it's dist/build.js
+    publicPath: 'dist/',
     filename: 'build.js'
   },
   module: {
@@ -18,7 +19,16 @@ module.exports = {
         loader: 'babel',
         // don't transform node_modules folder (which don't need to be compiled)
         exclude: /node_modules/
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue'
       }
     ]
+  },
+  vue: {
+    loaders: {
+      js: 'babel'
+    }
   }
 }
